@@ -19,13 +19,11 @@ export function ThemeToggle() {
     return (
         <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="p-2 rounded-xl bg-gray-100 cursor-pointer dark:bg-gray-800 hover:ring-2 ring-blue-500 transition-all"
+            className="p-2 rounded-xl transition-all cursor-pointer
+                text-gray-700
+            dark:text-black"
         >
-            {theme === 'dark' ? (
-                <Sun size={20} className="text-yellow-400" />
-            ) : (
-                <Moon size={20} className="text-white" />
-            )}
+            {theme === 'dark' ? <Sun size={20} className="text-yellow-500" /> : <Moon size={20} />}
         </button>
     );
 }

@@ -1,11 +1,15 @@
+import Hero from '@/components/hero/Hero';
 import Navbar from '@/components/navbar/Navbar';
 
-const page = () => {
+const Page = () => {
     return (
-        <div>
+        <main className="relative min-h-screen">
             <Navbar />
-        </div>
+            <div className="pt-20">
+                <Hero />
+            </div>
+        </main>
     );
 };
 
-export default page;
+export default Page;
