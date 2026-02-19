@@ -1,17 +1,27 @@
 import type { Metadata } from 'next';
-import { ThemeProvider } from "@/components/themes/theme-provider"
-import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 
-const geistSans = Geist({
-    variable: '--font-geist-sans',
-    subsets: ['latin']
-});
+// Google Fonts: Antonio, Poppins, Satisfy
+const antonio = {
+    importLink: 'https://fonts.googleapis.com/css2?family=Antonio:wght@400;700&display=swap'
+};
 
-const geistMono = Geist_Mono({
-    variable: '--font-geist-mono',
-    subsets: ['latin']
-});
+const poppins = {
+    importLink: 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap'
+};
+
+const satisfy = {
+    importLink: 'https://fonts.googleapis.com/css2?family=Satisfy&display=swap'
+};
+
+// Inject Google Fonts via <link>
+const GoogleFontsLinks = () => (
+    <>
+        <link href={antonio.importLink} rel="stylesheet" />
+        <link href={poppins.importLink} rel="stylesheet" />
+        <link href={satisfy.importLink} rel="stylesheet" />
+    </>
+);
 
 export const metadata: Metadata = {
     title: 'Mahmoud Elsheikh Portfolio',
@@ -26,10 +36,20 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-                <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-                    {children}
-                </ThemeProvider>
+            <head>
+                <GoogleFontsLinks />
+            </head>
+            <body
+                className="antialiased"
+                style={
+                    {
+                        '--font-poppins': 'Poppins, sans-serif',
+                        '--font-antonio': 'Antonio, sans-serif',
+                        '--font-satisfy': 'Satisfy, cursive'
+                    } as React.CSSProperties
+                }
+            >
+                {children}
             </body>
         </html>
     );

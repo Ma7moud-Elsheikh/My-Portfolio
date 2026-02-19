@@ -1,67 +1,69 @@
 'use client';
-import { Menu, X } from 'lucide-react';
+
 import Link from 'next/link';
-import { useState } from 'react';
-import { ThemeToggle } from '../themes/ThemeToggle';
+import { useEffect, useState } from 'react';
+import { FaWhatsapp } from 'react-icons/fa';
 
 export default function Navbar() {
-    const [isOpen, setIsOpen] = useState(false);
+    const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP;
+    const [show, setShow] = useState(true); // show navbar
+    const [lastScrollY, setLastScrollY] = useState(0);
 
-    const navLinks = [
-        { name: 'Home', href: '/' },
-        { name: 'Projects', href: '#projects' },
-        { name: 'Skills', href: '#skills' },
-        { name: 'Contact', href: '#contact' }
-    ];
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY > lastScrollY && currentScrollY > 50) {
+                // scrolling down
+                setShow(false);
+            } else {
+                // scrolling up
+                setShow(true);
+            }
+
+            setLastScrollY(currentScrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [lastScrollY]);
 
     return (
-        <nav className="fixed w-full mb-3 z-50 top-0 bg-background/70 text-foreground backdrop-blur-md border-b border-foreground/10 transition-colors duration-300">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between h-16">
-                    {/* Logo */}
-                    <div className="shrink-0 font-bold text-xl tracking-tighter">
-                        MAHMOUD<span className="text-blue-600">.DEV</span>
-                    </div>
+        <nav
+            className={`
+        fixed top-4 left-1/2 z-50 w-[95%] max-w-6xl
+        -translate-x-1/2 rounded-full
+        bg-black/60 backdrop-blur-xl
+        transition-transform duration-500
+        ${show ? 'translate-y-0' : '-translate-y-full'}
+      `}
+            role="navigation"
+            aria-label="Main navigation"
+        >
+            <div className="mx-auto flex h-16 items-center justify-between px-6">
+                {/* Logo */}
+                <Link
+                    href="/"
+                    className="text-xl antonio-font font-bold tracking-wide text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md"
+                >
+                    MAHMOUD
+                </Link>
 
-                    {/* Desktop Links */}
-                    <div className="hidden md:flex items-center space-x-8">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                className="text-sm font-medium hover:text-blue-600 transition-colors"
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
-                        <ThemeToggle />
-                    </div>
-
-                    {/* Mobile Toggle & Theme Toggle */}
-                    <div className="md:hidden flex items-center gap-4">
-                        <ThemeToggle />
-                        <button onClick={() => setIsOpen(!isOpen)}>
-                            {isOpen ? <X /> : <Menu />}
-                        </button>
-                    </div>
+                <div className="flex items-center gap-4">
+                    {whatsapp && (
+                        <a
+                            href={`https://wa.me/${whatsapp}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Contact on WhatsApp"
+                            className="rounded-xl p-2 transition-all hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500"
+                        >
+                            <FaWhatsapp size={22} className="text-[#25D366]" />
+                        </a>
+                    )}
                 </div>
             </div>
-
-            {/* Mobile Menu */}
-            {isOpen && (
-                <div className="md:hidden absolute top-16 left-0 w-full bg-background/95 backdrop-blur-lg border-b border-foreground/10 p-4 space-y-4 shadow-xl transition-all">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.name}
-                            href={link.href}
-                            onClick={() => setIsOpen(false)}
-                            className="block text-base font-semibold text-foreground hover:text-blue-600 px-2 py-1 transition-colors"
-                        >
-                            {link.name}
-                        </Link>
-                    ))}
-                </div>
-            )}
         </nav>
     );
 }
