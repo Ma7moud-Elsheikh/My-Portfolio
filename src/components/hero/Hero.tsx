@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { FaDownload } from 'react-icons/fa';
 
 const Hero = () => {
     const containerVariants = {
@@ -19,7 +20,7 @@ const Hero = () => {
     };
 
     return (
-        <section className="relative min-h-[80vh] flex flex-col justify-center items-center text-center px-4 overflow-hidden bg-background">
+        <section className="relative min-h-[50vh] flex flex-col justify-center items-center text-center px-4 overflow-hidden">
             {/* Background blobs */}
             <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/10 blur-[130px] rounded-full -z-10 animate-pulse" />
             <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-indigo-500/10 blur-[130px] rounded-full -z-10 animate-pulse delay-700" />
@@ -50,55 +51,20 @@ const Hero = () => {
                 </motion.h1>
 
                 {/* Subheading */}
-                <motion.h2
+                <motion.a
                     variants={itemVariants}
-                    className="mb-8 text-2xl font-bold leading-tight md:text-4xl text-slate-200"
+                    href="/Mahmoud-ElSheikh-CV.pdf"
+                    download
+                    className="inline-flex items-center gap-3 px-8 py-4 text-lg font-semibold tracking-wide text-white rounded-xl bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 transition-all duration-300 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 hover:-translate-y-1"
                 >
-                    Crafting Modern Digital Experiences.
-                </motion.h2>
-
-                {/* Description */}
-                <motion.p
-                    variants={itemVariants}
-                    className="mb-10 max-w-xl ms-auto me-auto text-lg text-slate-400 leading-relaxed"
-                >
-                    I build fast, accessible, and scalable web applications using React and Next.js
-                    with a strong focus on performance and UX.
-                </motion.p>
-
-                {/* Buttons */}
-                <motion.div
-                    variants={itemVariants}
-                    className="flex flex-col sm:flex-row gap-5 justify-center items-center"
-                >
-                    <a
-                        href="#projects"
-                        className="group relative px-8 py-4 bg-white text-black rounded-2xl font-bold transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl shadow-white/5"
-                    >
-                        View My Projects
-                    </a>
-
-                    <a
-                        href="#contact"
-                        className="px-8 py-4 border border-slate-700 text-white rounded-2xl font-bold hover:bg-white/5 transition-all active:scale-95"
-                    >
-                        Let&apos;s Talk
-                    </a>
-                </motion.div>
+                    <FaDownload className="text-xl" />
+                    Download CV
+                </motion.a>
             </motion.div>
 
-            {/* Scroll Indicator */}
-            <motion.div
-                animate={{ y: [0, 10, 0], opacity: [0.3, 0.6, 0.3] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 text-slate-500"
-            >
-                <div className="w-6 h-10 border-2 border-slate-700 rounded-full flex justify-center p-1">
-                    <div className="w-1.5 h-1.5 bg-slate-500 rounded-full" />
-                </div>
-            </motion.div>
+
         </section>
     );
-}
+};
 
 export default Hero;

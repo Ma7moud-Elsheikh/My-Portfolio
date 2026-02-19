@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const About = () => {
     return (
-        <section id="about" className="relative py-24 px-6 bg-background overflow-hidden">
+        <section id="about" className="relative pb-5 overflow-hidden">
             {/* Background blur blob */}
             <div className="absolute top-1/2 left-0 w-72 h-72 bg-blue-600/5 blur-[120px] rounded-full -z-10" />
 
@@ -69,6 +69,17 @@ const About = () => {
                     {/* Decorative blobs */}
                     <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-blue-600/20 blur-3xl -z-10 animate-pulse" />
                     <div className="absolute -top-6 -left-6 w-32 h-32 bg-indigo-600/20 blur-3xl -z-10" />
+
+                    {/* Scroll Indicator */}
+            <motion.div
+                animate={{ y: [0, 10, 0], opacity: [0.3, 0.6, 0.3] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="absolute bottom-10 left-1/2 -translate-x-1/2 text-slate-500"
+            >
+                <div className="w-6 h-10 border-2 border-slate-700 rounded-full flex justify-center p-1">
+                    <div className="w-1.5 h-1.5 bg-slate-500 rounded-full" />
+                </div>
+            </motion.div>
                 </motion.div>
             </div>
         </section>
