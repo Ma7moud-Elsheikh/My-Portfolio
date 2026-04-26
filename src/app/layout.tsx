@@ -1,55 +1,42 @@
 import type { Metadata } from 'next';
+import { Antonio, Poppins, Satisfy } from 'next/font/google';
 import './globals.css';
 
-// Google Fonts: Antonio, Poppins, Satisfy
-const antonio = {
-    importLink: 'https://fonts.googleapis.com/css2?family=Antonio:wght@400;700&display=swap'
-};
+import CursorGlow from '@/components/cursor/CursorGlow';
+import SmoothScroll from '@/components/cursor/SmoothScroll';
 
-const poppins = {
-    importLink: 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap'
-};
+const poppins = Poppins({
+    subsets: ['latin'],
+    weight: ['400', '600', '700'],
+    variable: '--font-poppins'
+});
 
-const satisfy = {
-    importLink: 'https://fonts.googleapis.com/css2?family=Satisfy&display=swap'
-};
+const antonio = Antonio({
+    subsets: ['latin'],
+    weight: ['400', '700'],
+    variable: '--font-antonio'
+});
 
-// Inject Google Fonts via <link>
-const GoogleFontsLinks = () => (
-    <>
-        <link href={antonio.importLink} rel="stylesheet" />
-        <link href={poppins.importLink} rel="stylesheet" />
-        <link href={satisfy.importLink} rel="stylesheet" />
-    </>
-);
+const satisfy = Satisfy({
+    subsets: ['latin'],
+    weight: ['400'],
+    variable: '--font-satisfy'
+});
 
 export const metadata: Metadata = {
-    title: 'Mahmoud Elsheikh Portfolio',
-    description:
-        "Mahmoud Elsheikh Portfolio is a personal website showcasing the projects and skills of Mahmoud Elsheikh, a software developer. The portfolio includes information about Mahmoud's background, experience, and contact details."
+    title: 'Mahmoud Elsheikh | Portfolio',
+    description: 'Personal website showcasing projects and skills of Mahmoud Elsheikh'
 };
 
-export default function RootLayout({
-    children
-}: Readonly<{
-    children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <head>
-                <GoogleFontsLinks />
-            </head>
             <body
-                className="antialiased"
-                style={
-                    {
-                        '--font-poppins': 'Poppins, sans-serif',
-                        '--font-antonio': 'Antonio, sans-serif',
-                        '--font-satisfy': 'Satisfy, cursive'
-                    } as React.CSSProperties
-                }
+                className={`${poppins.variable} ${antonio.variable} ${satisfy.variable} antialiased bg-[#0a0a0a] text-white`}
             >
-                {children}
+                <SmoothScroll />
+                <CursorGlow />
+                <main>{children}</main>
             </body>
         </html>
     );
