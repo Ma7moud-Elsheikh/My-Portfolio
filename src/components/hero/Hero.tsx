@@ -2,13 +2,7 @@
 
 import gsap from 'gsap';
 import { useEffect, useRef } from 'react';
-import {
-    FaDownload,
-    FaFacebook,
-    FaGithub,
-    FaInstagram,
-    FaLinkedin
-} from 'react-icons/fa';
+import { FaDownload, FaEnvelope, FaFacebook, FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 const Hero: React.FC = () => {
     const sectionRef = useRef<HTMLElement>(null);
@@ -105,7 +99,7 @@ const Hero: React.FC = () => {
     return (
         <section
             ref={sectionRef}
-            className="relative min-h-[80vh] flex flex-col justify-center items-center text-center px-4 overflow-hidden bg-[#0a0a0a]"
+            className="relative min-h-[90vh] flex flex-col justify-center items-center text-center px-4 overflow-hidden bg-[#0a0a0a]"
         >
             {/* Background Blobs */}
             <div className="absolute inset-0 pointer-events-none">
@@ -166,6 +160,11 @@ const Hero: React.FC = () => {
                             icon: <FaInstagram />,
                             link: 'https://instagram.com/',
                             color: 'hover:text-[#E4405F]'
+                        },
+                        {
+                            icon: <FaEnvelope />,
+                            link: 'mailto:mahmodelshikh77@gmail.com',
+                            color: 'hover:text-[#EA4335]'
                         }
                     ].map((item, i) => (
                         <a

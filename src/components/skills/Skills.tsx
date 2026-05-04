@@ -122,7 +122,10 @@ const Skills = () => {
             id="skills"
             className="relative py-10 md:py-20 bg-[#0a0a0a] overflow-hidden"
         >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-blue-600/10 blur-[150px] rounded-full -z-10" />
+            {/* Background Glow */}
+            <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-30">
+                <div className="absolute top-1/2 left-[-10%] w-125 h-125 bg-blue-600/10 blur-[120px] rounded-full" />
+            </div>
 
             <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-start gap-12 px-6">
                 <div ref={headerRef} className="flex-1 sticky lg:top-24">

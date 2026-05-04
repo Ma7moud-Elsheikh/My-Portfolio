@@ -25,7 +25,10 @@ const satisfy = Satisfy({
 
 export const metadata: Metadata = {
     title: 'Mahmoud Elsheikh | Portfolio',
-    description: 'Personal website showcasing projects and skills of Mahmoud Elsheikh'
+    description: 'Personal website showcasing projects and skills of Mahmoud Elsheikh',
+    verification: {
+        google: 'M-QzbIZ50XUuwsYL19jYjw4LP-uhU95pKVdKUzMkUa4'
+    }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

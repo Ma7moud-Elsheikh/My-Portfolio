@@ -97,7 +97,7 @@ export default function Navbar() {
     return (
         <nav
             ref={navRef}
-            className="fixed top-6 left-1/2 z-50 w-[90%] max-w-5xl -translate-x-1/2 rounded-4xl bg-black/20 backdrop-blur-md border border-white/10 px-8"
+            className="fixed top-6 left-1/2 z-50 w-[90%] max-w-5xl -translate-x-1/2 rounded-4xl bg-black backdrop-blur-md border border-white/10 px-8"
         >
             <div className="mx-auto flex h-16 items-center justify-between">
                 {/* Logo */}

@@ -3,6 +3,7 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
 interface Project {
@@ -20,9 +21,15 @@ const projects: Project[] = [
         features: ['React', 'TypeScript', 'Tailwind CSS', 'Redux Toolkit', 'Chadcn UI']
     },
     {
+        title: 'EACR',
+        image: '/projects/EACR-EG.png',
+        live: 'https://eacr-eg.org/en',
+        features: ['JavaScript', 'HTML', 'CSS']
+    },
+    {
         title: 'DecoStyle',
         image: '/projects/DecoStyle.png',
-        live: 'https://example.com',
+        live: 'https://deco-style.vercel.app/',
         features: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Bootstrap', 'Framer Motion']
     },
     {
@@ -45,15 +52,17 @@ const Projects: React.FC = () => {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     const cursorRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-    const mouseXRef = useRef<number[]>([0, 0, 0, 0]);
-    const mouseYRef = useRef<number[]>([0, 0, 0, 0]);
-    const currentXRef = useRef<number[]>([0, 0, 0, 0]);
-    const currentYRef = useRef<number[]>([0, 0, 0, 0]);
+    const mouseXRef = useRef<number[]>([0, 0, 0, 0, 0]);
+    const mouseYRef = useRef<number[]>([0, 0, 0, 0, 0]);
+    const currentXRef = useRef<number[]>([0, 0, 0, 0, 0]);
+    const currentYRef = useRef<number[]>([0, 0, 0, 0, 0]);
     const rafIdRef = useRef<number | null>(null);
     const activeIndexRef = useRef<number | null>(null);
 
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
+
+        if (!gridRef.current || !titleRef.current) return;
 
         const cards = gsap.utils.toArray('.project-card');
 
@@ -75,27 +84,21 @@ const Projects: React.FC = () => {
             }
         );
 
-        if (titleRef.current) {
-            gsap.fromTo(
-                titleRef.current,
-                {
-                    opacity: 0,
-                    y: 80,
-                    filter: 'blur(10px)'
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    filter: 'blur(0px)',
-                    duration: 1,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: titleRef.current,
-                        start: 'top 90%'
-                    }
+        gsap.fromTo(
+            titleRef.current,
+            { opacity: 0, y: 80, filter: 'blur(10px)' },
+            {
+                opacity: 1,
+                y: 0,
+                filter: 'blur(0px)',
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: titleRef.current,
+                    start: 'top 90%'
                 }
-            );
-        }
+            }
+        );
 
         return () => {
             if (rafIdRef.current) {
@@ -131,7 +134,6 @@ const Projects: React.FC = () => {
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
         const rect = e.currentTarget.getBoundingClientRect();
-
         mouseXRef.current[index] = e.clientX - rect.left;
         mouseYRef.current[index] = e.clientY - rect.top;
 
@@ -143,7 +145,6 @@ const Projects: React.FC = () => {
     const handlePointerEnter = (index: number) => {
         setHoveredIndex(index);
 
-        // reset position to mouse position
         if (cursorRefs.current[index]) {
             const rect = cursorRefs.current[index]?.parentElement?.getBoundingClientRect();
             if (rect) {
@@ -164,7 +165,10 @@ const Projects: React.FC = () => {
     };
 
     return (
-        <section className="relative py-10 md:py-20 bg-[#0a0a0a] overflow-hidden">
+        <section
+            aria-label="Projects Portfolio"
+            className="relative py-10 md:py-20 bg-[#111111] overflow-hidden"
+        >
             <div className="absolute top-1/2 right-0 w-96 h-96 bg-indigo-600/10 blur-[150px] rounded-full -z-10" />
 
             <div className="max-w-6xl mx-auto flex flex-col gap-12 px-6">
@@ -196,8 +200,15 @@ const Projects: React.FC = () => {
                             onPointerEnter={() => handlePointerEnter(index)}
                             onPointerLeave={() => handlePointerLeave(index)}
                         >
-                            <a href={project.live} target="_blank" rel="noopener noreferrer">
+                            <Link
+                                href={project.live}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={`View ${project.title} project`}
+                                title={project.title}
+                            >
                                 <div className="relative w-full h-75 md:h-100 overflow-hidden">
+                                    {/* Custom cursor */}
                                     <div className="hidden lg:block pointer-events-none absolute inset-0 z-30 overflow-hidden">
                                         <div
                                             ref={(el) => {
@@ -221,17 +232,22 @@ const Projects: React.FC = () => {
                                         </div>
                                     </div>
 
+                                    {/* ✅ Image مع sizes صح + lazy loading */}
                                     <Image
                                         src={project.image}
-                                        alt={project.title}
+                                        alt={`Screenshot of ${project.title} project`}
                                         fill
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                        style={{ objectFit: 'cover' }}
                                         className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                                        priority={index === 0}
+                                        loading={index === 0 ? undefined : 'lazy'}
                                     />
 
                                     <div className="absolute lg:hidden inset-0 bg-linear-to-t from-black via-black/70 to-black/30" />
-
                                     <div className="hidden lg:block absolute inset-0 bg-linear-to-b from-transparent via-black/50 to-black/90 opacity-0 group-hover:opacity-100 transition-all duration-700" />
 
+                                    {/* Project info */}
                                     <div
                                         className={`absolute bottom-0 left-0 p-6 md:p-8 w-full z-20 transition-all duration-500 ${
                                             hoveredIndex === index
@@ -255,7 +271,7 @@ const Projects: React.FC = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
                     ))}
                 </div>
