@@ -10,7 +10,7 @@ const Page = () => {
     return (
         <main className="relative min-h-screen">
             <Navbar />
-            <div className="pt-28">
+            <div className="pt-20 lg:pt-28">
                 <Hero />
                 <About />
                 <Skills />
