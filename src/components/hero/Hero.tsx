@@ -2,7 +2,14 @@
 
 import gsap from 'gsap';
 import { useEffect, useRef } from 'react';
-import { FaDownload, FaEnvelope, FaFacebook, FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import {
+    FaDownload,
+    FaEnvelope,
+    FaFacebook,
+    FaGithub,
+    FaInstagram,
+    FaLinkedin
+} from 'react-icons/fa';
 
 const Hero: React.FC = () => {
     const sectionRef = useRef<HTMLElement>(null);

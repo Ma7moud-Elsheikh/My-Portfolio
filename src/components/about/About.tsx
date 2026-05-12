@@ -164,15 +164,21 @@ const About: React.FC = () => {
                         className="text-gray-400 text-md md:text-lg leading-relaxed font-light"
                     >
                         I&apos;m a{' '}
-                        <span className="text-white font-medium italic">Frontend Developer</span>{' '}
-                        focused on building fast, interactive, and visually polished web
-                        experiences...
+                        <span className="text-white font-medium italic">Front-End Developer</span>{' '}
+                        focused on building fast, interactive, and visually polished web experiences
+                        for businesses, brands, restaurants, cafés, and individuals who want to turn
+                        their ideas into modern digital products. I work with technologies like
+                        <span className="text-white font-medium italic">Next.js</span>,{' '}
+                        <span className="text-white font-medium italic">React</span> and{' '}
+                        <span className="text-white font-medium italic">Tailwind CSS</span> to
+                        create responsive, user-friendly, and high-performance websites.
                     </p>
 
-                    {/* blockquote p */}
+                    {/* blockquote */}
                     <blockquote className="text-gray-500 text-base leading-relaxed border-l border-blue-500/30 pl-6 italic">
-                        &ldquo;I care about performance, clean architecture, and details that most
-                        people don&apos;t notice — but everyone feels.&rdquo;
+                        &ldquo;What I enjoy most about this work is transforming ideas into real
+                        experiences that people can interact with, benefit from, and
+                        remember.&rdquo;
                     </blockquote>
 
                     {/* stats aria-label */}
