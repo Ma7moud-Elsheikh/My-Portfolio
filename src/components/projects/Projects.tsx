@@ -39,6 +39,12 @@ const projects: Project[] = [
         features: ['JavaScript', 'HTML', 'CSS']
     },
     {
+        title: 'Design Patterns',
+        image: '/projects/DesignPatterns.png',
+        live: 'https://design-pattern-two.vercel.app',
+        features: ['JavaScript', 'HTML', 'CSS']
+    },
+    {
         title: 'CRUD System',
         image: '/projects/CRUD.png',
         live: 'https://crud-jet-ten.vercel.app/',
