@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
+import { projectLength } from '../projects/Projects';
 
 const About: React.FC = () => {
     const sectionRef = useRef<HTMLElement>(null);
@@ -197,7 +198,7 @@ const About: React.FC = () => {
                         </div>
                         <div role="listitem">
                             <p className="text-3xl font-bold text-white mb-1 antonio-font tracking-tighter">
-                                15+
+                                {projectLength}+
                             </p>
                             <p className="text-xs uppercase tracking-widest text-gray-500">
                                 Projects Done

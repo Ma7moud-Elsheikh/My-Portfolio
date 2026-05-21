@@ -45,10 +45,34 @@ const projects: Project[] = [
         features: ['JavaScript', 'HTML', 'CSS']
     },
     {
+        title: 'Dashboard',
+        image: '/projects/dashboard.png',
+        live: 'https://dashboard-primary.vercel.app/',
+        features: ['JavaScript', 'HTML', 'CSS', 'Bootstrap']
+    },
+    {
+        title: 'American Academy',
+        image: '/projects/AmericanAcademy.png',
+        live: 'https://american-academy-zeta.vercel.app/',
+        features: ['JavaScript', 'HTML', 'CSS', 'Bootstrap']
+    },
+    {
         title: 'CRUD System',
         image: '/projects/CRUD.png',
         live: 'https://crud-jet-ten.vercel.app/',
         features: ['JavaScript', 'HTML', 'CSS']
+    },
+    {
+        title: 'Image Filter',
+        image: '/projects/filter-img.png',
+        live: 'https://filter-img-seven.vercel.app/',
+        features: ['JavaScript', 'HTML', 'CSS']
+    },
+    {
+        title: 'Digital Ideas',
+        image: '/projects/DigitalIdeas.png',
+        live: 'https://digital-idea-jet.vercel.app/',
+        features: ['JavaScript', 'HTML', 'CSS', 'Bootstrap']
     }
 ];
 
@@ -287,3 +311,4 @@ const Projects: React.FC = () => {
 };
 
 export default Projects;
+export const projectLength = projects.length;
