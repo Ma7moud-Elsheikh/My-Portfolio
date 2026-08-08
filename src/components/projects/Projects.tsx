@@ -50,12 +50,12 @@ const projects: Project[] = [
         live: 'https://dashboard-primary.vercel.app/',
         features: ['JavaScript', 'HTML', 'CSS', 'Bootstrap']
     },
-    {
-        title: 'American Academy',
-        image: '/projects/AmericanAcademy.png',
-        live: 'https://american-academy-zeta.vercel.app/',
-        features: ['JavaScript', 'HTML', 'CSS', 'Bootstrap']
-    },
+    // {
+    //     title: 'American Academy',
+    //     image: '/projects/AmericanAcademy.png',
+    //     live: 'https://american-academy-zeta.vercel.app/',
+    //     features: ['JavaScript', 'HTML', 'CSS', 'Bootstrap']
+    // },
     {
         title: 'CRUD System',
         image: '/projects/CRUD.png',
